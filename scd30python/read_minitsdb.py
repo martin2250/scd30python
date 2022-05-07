@@ -3,10 +3,11 @@ import scd30
 import socket
 import time
 from statistics import mean
+import os
 
-address = '192.168.2.91'
-port = 8001
-sensor_path = '/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.3:1.0-port0'
+address = os.environ['MINITSDB_IP']
+port = int(os.environ['MINITSDB_PORT'])
+sensor_path = '/dev/ttyscd30'
 
 sensor = scd30.SCD30(sensor_path)
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
